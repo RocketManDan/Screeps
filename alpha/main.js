@@ -5,8 +5,11 @@ var roleBuilder = require('role.builder');
 var roles = ['harvester', 'builder', 'upgrader'];
 var jobs  = [roleHarvester, roleUpgrader, roleBuilder];
 var nDesCreepsInRole['harvester'] = 3;
-var nDesCreepsInRole['builder'] = 2;
-var nDesCreepsInRole['upgrader'] = 3;
+    nDesCreepsInRole['builder'] = 2;
+    nDesCreepsInRole['upgrader'] = 3;
+var rolesNum['harvester'] = 0;
+    rolesNum['builder'] = 1;
+    rolesNum['upgrader'] = 2;
 
 module.exports.loop = function () {
 
@@ -39,7 +42,7 @@ module.exports.loop = function () {
 			nCreepsInRole[roleName] = _.filter(Game.creeps, (creep) => creep.memory.role == roleName).length;
 		
 			if (nCreeps[roleName] == 0) {
-				Game.spawns['Spawn1'].spawnCreep(jobs[roles[roleName]].body, newName, 
+				Game.spawns['Spawn1'].spawnCreep(jobs[rolesNum[roleName]].body, newName, 
 				{memory: {role: roleName}});
 				break;
 			}
@@ -48,7 +51,7 @@ module.exports.loop = function () {
 	
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-		jobs[roles[creep.memory.role]].run(creep);
+		jobs[rolesNum[creep.memory.role]].run(creep);
 		// switch: creep.memory.role {
 			// case 0
 				// roleharvester.run(creep);
