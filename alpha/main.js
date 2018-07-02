@@ -3,7 +3,10 @@ var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 
 var roles = ['harvester', 'builder', 'upgrader'];
-var jobs  = [roleHarvester, roleUpgrader, roleBuilder];
+//var jobs  = [roleHarvester, roleUpgrader, roleBuilder];
+var jobs['harvester'] = roleHarvester;
+    jobs['builder'] = roleUpgrader;
+    jobs['upgrader'] = roleBuilder;
 var nDesCreepsInRole['harvester'] = 3;
     nDesCreepsInRole['builder'] = 2;
     nDesCreepsInRole['upgrader'] = 3;
@@ -42,16 +45,25 @@ module.exports.loop = function () {
 			nCreepsInRole[roleName] = _.filter(Game.creeps, (creep) => creep.memory.role == roleName).length;
 		
 			if (nCreeps[roleName] == 0) {
-				Game.spawns['Spawn1'].spawnCreep(jobs[rolesNum[roleName]].body, newName, 
+				Game.spawns['Spawn1'].spawnCreep(jobs[roleName].body, newName, 
 				{memory: {role: roleName}});
 				break;
 			}
 		}
 	}
 	
+    if(Game.spawns['Spawn1'].spawning) { 
+        var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
+        Game.spawns['Spawn1'].room.visual.text(
+            'ðŸ› ï¸' + spawningCreep.memory.role,
+            Game.spawns['Spawn1'].pos.x + 1, 
+            Game.spawns['Spawn1'].pos.y, 
+            {align: 'left', opacity: 0.8});
+    }
+	
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-		jobs[rolesNum[creep.memory.role]].run(creep);
+		jobs[creep.memory.role].run(creep);
 		// switch: creep.memory.role {
 			// case 0
 				// roleharvester.run(creep);
