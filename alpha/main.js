@@ -35,12 +35,12 @@ module.exports.loop = function () {
 	}
 	
 	if(Game.time %10 == 0 && !Game.spawns['Spawn1'].spawning){
-		for(var role in roles){
-			nCreepsInRole[role] = _.filter(Game.creeps, (creep) => creep.memory.role == role).length;
+		for(var roleName in roles){
+			nCreepsInRole[roleName] = _.filter(Game.creeps, (creep) => creep.memory.role == roleName).length;
 		
-			if (nCreeps[role] == 0) {
-				Game.spawns['Spawn1'].spawnCreep(jobs[roles[role]].body, newName, 
-				{memory: {role: role}});
+			if (nCreeps[roleName] == 0) {
+				Game.spawns['Spawn1'].spawnCreep(jobs[roles[roleName]].body, newName, 
+				{memory: {role: roleName}});
 				break;
 			}
 		}
