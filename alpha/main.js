@@ -5,8 +5,8 @@ var roleBuilder = require('role.builder');
 var roles = ['harvester', 'builder', 'upgrader'];
 var jobs  = [roleHarvester, roleUpgrader, roleBuilder];
 var nDesCreepsInRole['harvester'] = 3;
-var nDesCreepsInRole['builder'] = 3;
-var nDesCreepsInRole['upgrader'] = 2;
+var nDesCreepsInRole['builder'] = 2;
+var nDesCreepsInRole['upgrader'] = 3;
 
 module.exports.loop = function () {
 
