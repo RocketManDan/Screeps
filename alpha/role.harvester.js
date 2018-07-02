@@ -24,6 +24,11 @@ var roleHarvester = {
             }
         }
 	}
+	
+	body: function() {
+		[WORK, CARRY, MOVE]
+	}
+	
 };
 
 module.exports = roleHarvester;

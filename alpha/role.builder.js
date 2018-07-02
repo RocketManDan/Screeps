@@ -27,6 +27,10 @@ var roleBuilder = {
             }
 	    }
 	}
+	
+	body: function() {
+		[WORK, CARRY, MOVE]
+	}
 };
 
 module.exports = roleBuilder;

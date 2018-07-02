@@ -24,6 +24,10 @@ var roleUpgrader = {
             }
         }
 	}
+	
+	body: function() {
+		[WORK, CARRY, MOVE]
+	}
 };
 
 module.exports = roleUpgrader;
